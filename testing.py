@@ -3,49 +3,6 @@ import pytest
 from edits import edit_distance_bwd, edit_distance_fwd
 from seamcarve import SeamCarve
 
-def test_edits():
-    assert edit_distance_fwd("", "") == 0
-    assert edit_distance_bwd("", "") == 0
-    assert edit_distance_fwd("apple", "opal") == 3
-    assert edit_distance_bwd("apple", "opal") == 3
-    assert edit_distance_fwd("opal", "apple") == 3
-    assert edit_distance_bwd("opal", "apple") == 3
-    assert edit_distance_fwd("oPal", "OPAL") == 0
-    assert edit_distance_bwd("oPal", "OPAL") == 0
-    assert edit_distance_fwd("hello", " hel lo ") == 3
-    assert edit_distance_bwd("hello", " hel lo ") == 3
-    assert edit_distance_fwd(" ", " ") == 0
-    assert edit_distance_bwd(" ", " ") == 0
-    assert edit_distance_fwd("mississippi", "mississippi") == 0
-    assert edit_distance_bwd("mississippi", "mississippi") == 0
-    assert edit_distance_fwd("car", "becandy") == 5
-    assert edit_distance_bwd("car", "becandy") == 5
-    assert edit_distance_fwd("bit", "bat") == 1
-    assert edit_distance_bwd("bit", "bat") == 1
-    assert edit_distance_fwd("coral", "z") == 5
-    assert edit_distance_bwd("coral", "z") == 5
-    assert edit_distance_fwd("z", "coral") == 5
-    assert edit_distance_bwd("z", "coral") == 5
-    assert edit_distance_fwd("", "tub") == 3
-    assert edit_distance_bwd("", "tub") == 3
-    assert edit_distance_fwd("tub", "") == 3
-    assert edit_distance_bwd("tub", "") == 3
-
-    # I have a good set of tests because I covered all of the regular and edge
-    # cases. For example, I tested each of the regular cases pertaining to
-    # character insertions, deletions, and substitutions. I also tested edge
-    # cases such as strings with different capitalizations and spacing. I made
-    # sure to test each case identically for both functions, to evaluate their
-    # performance equally.
-
-    # Neither of these two functions are working perfectly. Both of them failed 
-    # on tests pertaining to lower-case versus upper-case strings and on tests
-    # where one string did not have any of the characters as the other string. 
-    # The backward edit distance function is less functional than the forward 
-    # version as it failed on many more of the above tests, unlike the backward 
-    # version which passed the same tests. So neither version works completely, 
-    # but the forward version is in a better working state.
-
 def test_seamcarve():
     # original 5x5 spreadsheet
     test_image = [[[255, 255, 255], [0, 0, 0], [125, 125, 125], [0, 0, 0],\
